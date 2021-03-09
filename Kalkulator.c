@@ -5,6 +5,9 @@
 
 // Jason Kanggara / 16520214
 
+// ASUMSI
+// Masukkan input dari user sesuai dengan kaidah program
+
 // Fungsi
 int penjumlahan(int a, int b) {
     int result;
@@ -27,8 +30,15 @@ float pembagian(int a, int b) {
     return result;
 }
 int pangkat(int a, int b) {
+    // Asumsi (a sebagai basis dan b sebagai pangkat)
+    // dan pangkat selalu > 1
     int result;
-    result = pow(a,b);
+    if (b==1) {
+        result = a;
+    }
+    else {
+        result = a*(pangkat(a,b-1));
+    }
     return result;
 }
 
@@ -63,26 +73,35 @@ int main() {
 
     if (operator == '+'){
         hasil = penjumlahan(a,b);
+        printf("%.1f", hasil);
     }
     else if (operator == '-'){
         hasil = pengurangan(a,b);
+        printf("%.1f", hasil);
     }
     else if (operator == '*'){
         hasil = perkalian(a,b);
+        printf("%.1f", hasil);
     }
     else if (operator == '/'){
         hasil = pembagian(a,b);
+        printf("%.1f", hasil);
     }
     else if (operator == '^'){
         hasil = pangkat(a,b);
+        printf("%.1f", hasil);
     }
     else if (operator == 'I' || operator == 'i'){
         printf("Jumlah Partisi: ");
         scanf("%d", &n);
         hasil = integral(a,b,n);
+        printf("%.1f", hasil);
+    }
+    else {
+        printf("Error");
     }
 
-    printf("%.1f", hasil);
+    
 
     return 0;
 }
